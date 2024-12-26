@@ -28,11 +28,11 @@ jobs:
           npm run build
       
       - name: build images
-        run: docker build -t swr.me-east-1.myhuaweicloud.com/qyx/cae-frontend .
+        run: docker build -t swr.me-east-1.myhuaweicloud.com/qyx/cae-frontend-new .
 
       - name: Login to SWR
         run: docker login -u me-east-1@EEWKRHXE5OFSDHGB6LNZ -p ${{ secrets.docker_secret }} swr.me-east-1.myhuaweicloud.com
 
       - name: Push to SWR
-        run: docker push swr.me-east-1.myhuaweicloud.com/qyx/cae-frontend
+        run: docker push swr.me-east-1.myhuaweicloud.com/qyx/cae-frontend-new
         
