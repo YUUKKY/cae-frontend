@@ -35,6 +35,6 @@ jobs:
 
       - name: Push to SWR
         run: |
-          docker tag cae-frontend:1.0.0 swr.me-east-1.myhuaweicloud.com/cae-demo/cae-frontend:1.0.0
-          docker push swr.me-east-1.myhuaweicloud.com/cae-demo/cae-frontend:1.0.0
+          docker tag cae-frontend:1.0.0 swr.me-east-1.myhuaweicloud.com/demo-cae/cae-frontend:1.0.0
+          docker push swr.me-east-1.myhuaweicloud.com/demo-cae/cae-frontend:1.0.0
         
