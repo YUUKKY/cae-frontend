@@ -33,10 +33,10 @@ jobs:
           mkdir ./obsutil_tools && tar -xzvf obsutil_linux_amd64.tar.gz -C ./obsutil_tools
           echo "========================="
           ls ./obsutil_tools
-          chmod 755 obsutil/obsutil
-          obsutil/obsutil version
-          obsutil/obsutil config -i=${{ secrets.HUAWEI_ACCESS_KEY_ID }} -k=${{ secrets.HUAWEI_SECRET_ACCESS_KEY }} -e='https://obs.me-east-1.myhuaweicloud.com'
-          obsutil/obsutil cp ./dist obs://liyade-test -f -r
+          chmod 755 obsutil_tools/obsutil
+          obsutil_tools/obsutil version
+          obsutil_tools/obsutil config -i=${{ secrets.HUAWEI_ACCESS_KEY_ID }} -k=${{ secrets.HUAWEI_SECRET_ACCESS_KEY }} -e='https://obs.me-east-1.myhuaweicloud.com'
+          obsutil_tools/obsutil cp ./dist obs://liyade-test -f -r
 
       # - name: Configure AWS CLI (for OBS)
       #   run: |
