@@ -1,0 +1,41 @@
+# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
+# For more information see: https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
+
+name: Node.js Package
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          cache: npm
+          cache-dependency-path: node_modules/.package-lock.json
+          node-version: 16
+      
+      - name: npm install and build
+        run: |
+          chmod 777 node_modules/.bin/vue-cli-service
+          npm install
+          npm run build
+      
+      - name: Configure AWS CLI (for OBS)
+        run: |
+          aws configure set aws_access_key_id ${{ secrets.HUAWEI_ACCESS_KEY_ID }}
+          aws configure set aws_secret_access_key ${{ secrets.HUAWEI_SECRET_ACCESS_KEY }}
+          aws configure set region 'me-east-1'
+
+      - name: Sync files to OBS
+        run: |
+          aws s3 sync ./dist s3://liyade-test \
+            --endpoint-url 'https://obs.me-east-1.myhuaweicloud.com' \
+            --acl public-read
+        
