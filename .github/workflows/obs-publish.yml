@@ -35,7 +35,7 @@ jobs:
 
       - name: Sync files to OBS
         run: |
-          aws s3 sync ./dist s3://liyade-test \
+          aws s3 sync ./dist obs://liyade-test \
             --endpoint-url 'https://obs.me-east-1.myhuaweicloud.com' \
             --acl public-read
         
