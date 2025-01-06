@@ -30,7 +30,9 @@ jobs:
       - name: install obsutils
         run: |
           wget https://obs-community.obs.cn-north-1.myhuaweicloud.com/obsutil/current/obsutil_linux_amd64.tar.gz
-          tar -xzvf obsutil_linux_amd64.tar.gz -C ./obsutil
+          mkdir ./obsutil_tools && tar -xzvf obsutil_linux_amd64.tar.gz -C ./obsutil_tools
+          echo "========================="
+          ls ./obsutil_tools
           chmod 755 obsutil/obsutil
           obsutil/obsutil version
           obsutil/obsutil config -i=${{ secrets.HUAWEI_ACCESS_KEY_ID }} -k=${{ secrets.HUAWEI_SECRET_ACCESS_KEY }} -e='https://obs.me-east-1.myhuaweicloud.com'
