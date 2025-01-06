@@ -30,7 +30,7 @@ jobs:
       - name: install obsutils
         run: |
           wget https://obs-community.obs.cn-north-1.myhuaweicloud.com/obsutil/current/obsutil_linux_amd64.tar.gz
-          obstool=$(tar -tzvf /tmp/etc.tar.gz)
+          obstool=$(tar -tzvf obsutil_linux_amd64.tar.gz)
           echo $(obstool)
           tar -xzvf obsutil_linux_amd64.tar.gz -C ./
           chmod 755 obstool/obsutil
