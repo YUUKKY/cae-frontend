@@ -30,19 +30,21 @@ jobs:
       - name: install obsutils
         run: |
           wget https://obs-community.obs.cn-north-1.myhuaweicloud.com/obsutil/current/obsutil_linux_amd64.tar.gz
-          tar -xzvf obsutil_linux_amd64.tar.gz
+          tar -xzvf obsutil_linux_amd64.tar.gz -C ./
           chmod 755 obsutil
           ./obsutil version
+          ./obsutil config -i=${{ secrets.HUAWEI_ACCESS_KEY_ID }} -k=${{ secrets.HUAWEI_SECRET_ACCESS_KEY }} -e='https://obs.me-east-1.myhuaweicloud.com'
+          obsutil cp ./dist obs://liyade-test -f -r
 
-      - name: Configure AWS CLI (for OBS)
-        run: |
-          aws configure set aws_access_key_id ${{ secrets.HUAWEI_ACCESS_KEY_ID }}
-          aws configure set aws_secret_access_key ${{ secrets.HUAWEI_SECRET_ACCESS_KEY }}
-          aws configure set region 'me-east-1'
+      # - name: Configure AWS CLI (for OBS)
+      #   run: |
+      #     aws configure set aws_access_key_id 
+      #     aws configure set aws_secret_access_key ${{ secrets.HUAWEI_SECRET_ACCESS_KEY }}
+      #     aws configure set region 'me-east-1'
 
-      - name: Sync files to OBS
-        run: |
-          aws s3 sync ./dist obs://liyade-test \
-            --endpoint-url 'https://obs.me-east-1.myhuaweicloud.com' \
-            --acl public-read
+      # - name: Sync files to OBS
+      #   run: |
+      #     aws s3 sync ./dist obs://liyade-test \
+      #       --endpoint-url 'https://obs.me-east-1.myhuaweicloud.com' \
+      #       --acl public-read
         
