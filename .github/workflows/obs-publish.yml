@@ -30,15 +30,12 @@ jobs:
       - name: install obsutils
         run: |
           wget https://obs-community.obs.cn-north-1.myhuaweicloud.com/obsutil/current/obsutil_linux_amd64.tar.gz
-          obstool=$(tar -tzvf obsutil_linux_amd64.tar.gz)
-          echo "==========================================="
-          echo $obstool
-          echo "==========================================="
+          obstool=$(tar -tzvf obsutil_linux_amd64.tar.gz | grep /obsutil | awk '{print $6}')
           tar -xzvf obsutil_linux_amd64.tar.gz -C ./
-          chmod 755 $obstool/obsutil
-          $obstool/obsutil version
-          $obstool/obsutil config -i=${{ secrets.HUAWEI_ACCESS_KEY_ID }} -k=${{ secrets.HUAWEI_SECRET_ACCESS_KEY }} -e='https://obs.me-east-1.myhuaweicloud.com'
-          $obstool/obsutil cp ./dist obs://liyade-test -f -r
+          chmod 755 $obstool
+          $obstool version
+          $obstool config -i=${{ secrets.HUAWEI_ACCESS_KEY_ID }} -k=${{ secrets.HUAWEI_SECRET_ACCESS_KEY }} -e='https://obs.me-east-1.myhuaweicloud.com'
+          $obstool cp ./dist obs://liyade-test -f -r
 
       # - name: Configure AWS CLI (for OBS)
       #   run: |
