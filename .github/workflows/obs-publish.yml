@@ -1,51 +1,51 @@
-# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
-# For more information see: https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
+# # This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
+# # For more information see: https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
 
-name: Node.js Package
+# name: Node.js Package
 
-on:
-  push:
-    branches:
-      - master
+# on:
+#   push:
+#     branches:
+#       - master
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v4
       
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          cache: npm
-          cache-dependency-path: node_modules/.package-lock.json
-          node-version: 16
+#       - name: Set up Node.js
+#         uses: actions/setup-node@v4
+#         with:
+#           cache: npm
+#           cache-dependency-path: node_modules/.package-lock.json
+#           node-version: 16
       
-      - name: npm install and build
-        run: |
-          chmod 777 node_modules/.bin/vue-cli-service
-          npm install
-          npm run build
+#       - name: npm install and build
+#         run: |
+#           chmod 777 node_modules/.bin/vue-cli-service
+#           npm install
+#           npm run build
 
-      - name: install obsutils
-        run: |
-          wget https://obs-community.obs.cn-north-1.myhuaweicloud.com/obsutil/current/obsutil_linux_amd64.tar.gz
-          obstool=$(tar -tzvf obsutil_linux_amd64.tar.gz | grep /obsutil | awk '{print $6}')
-          tar -xzvf obsutil_linux_amd64.tar.gz -C ./
-          chmod 755 $obstool
-          $obstool version
-          $obstool config -i=${{ secrets.HUAWEI_ACCESS_KEY_ID }} -k=${{ secrets.HUAWEI_SECRET_ACCESS_KEY }} -e='https://obs.me-east-1.myhuaweicloud.com'
-          $obstool cp ./dist obs://liyade-test -f -r
+#       - name: install obsutils
+#         run: |
+#           wget https://obs-community.obs.cn-north-1.myhuaweicloud.com/obsutil/current/obsutil_linux_amd64.tar.gz
+#           obstool=$(tar -tzvf obsutil_linux_amd64.tar.gz | grep /obsutil | awk '{print $6}')
+#           tar -xzvf obsutil_linux_amd64.tar.gz -C ./
+#           chmod 755 $obstool
+#           $obstool version
+#           $obstool config -i=${{ secrets.HUAWEI_ACCESS_KEY_ID }} -k=${{ secrets.HUAWEI_SECRET_ACCESS_KEY }} -e='https://obs.me-east-1.myhuaweicloud.com'
+#           $obstool cp ./dist obs://liyade-test -f -r
 
-      # - name: Configure AWS CLI (for OBS)
-      #   run: |
-      #     aws configure set aws_access_key_id 
-      #     aws configure set aws_secret_access_key ${{ secrets.HUAWEI_SECRET_ACCESS_KEY }}
-      #     aws configure set region 'me-east-1'
+#       # - name: Configure AWS CLI (for OBS)
+#       #   run: |
+#       #     aws configure set aws_access_key_id 
+#       #     aws configure set aws_secret_access_key ${{ secrets.HUAWEI_SECRET_ACCESS_KEY }}
+#       #     aws configure set region 'me-east-1'
 
-      # - name: Sync files to OBS
-      #   run: |
-      #     aws s3 sync ./dist obs://liyade-test \
-      #       --endpoint-url 'https://obs.me-east-1.myhuaweicloud.com' \
-      #       --acl public-read
+#       # - name: Sync files to OBS
+#       #   run: |
+#       #     aws s3 sync ./dist obs://liyade-test \
+#       #       --endpoint-url 'https://obs.me-east-1.myhuaweicloud.com' \
+#       #       --acl public-read
         
