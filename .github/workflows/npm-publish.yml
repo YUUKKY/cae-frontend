@@ -38,7 +38,7 @@ jobs:
           docker tag cae-frontend:1.0.0 swr.me-east-1.myhuaweicloud.com/demo-cae/cae-frontend:1.0.0
           docker push swr.me-east-1.myhuaweicloud.com/demo-cae/cae-frontend:1.0.0
 
-      - uses: actions/cae-deploy@v1
+      - uses: YUUKKY/cae-deploy@v1
         with:
           ak: ${{ secrets.HUAWEI_SECRET_ACCESS_KEY }}
           sk: ${{ secrets.SK }}
