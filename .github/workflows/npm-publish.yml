@@ -39,6 +39,7 @@ jobs:
           docker push swr.me-east-1.myhuaweicloud.com/demo-cae/cae-frontend:1.0.0
 
       - uses: yukky/cae-deploy@main
+        name: "Deploy to CAE"
         with:
           ak: ${{ secrets.HUAWEI_SECRET_ACCESS_KEY }}
           sk: ${{ secrets.SK }}
