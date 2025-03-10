@@ -44,7 +44,7 @@ jobs:
           ak: ${{ secrets.HUAWEI_SECRET_ACCESS_KEY }}
           sk: ${{ secrets.SK }}
           project-id: 00248baf96984aecac0f8a976fa7ac00
-          region-name: me-east-1
+          region-id: me-east-1
           environment-id: 44e3fa12-2f25-4d1f-be3d-5a761e434f29
           application-id: b561180e-4b31-49cf-aa6e-c891d9908d67
           component-id: e105422a-165a-4c44-b82b-de0ce3c3efe3
