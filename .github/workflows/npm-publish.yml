@@ -14,31 +14,31 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          cache: npm
-          cache-dependency-path: node_modules/.package-lock.json
-          node-version: 16
+      # - name: Set up Node.js
+      #   uses: actions/setup-node@v4
+      #   with:
+      #     cache: npm
+      #     cache-dependency-path: node_modules/.package-lock.json
+      #     node-version: 16
       
-      - name: npm install and build
-        run: |
-          chmod 777 node_modules/.bin/vue-cli-service
-          npm install
-          npm run build
+      # - name: npm install and build
+      #   run: |
+      #     chmod 777 node_modules/.bin/vue-cli-service
+      #     npm install
+      #     npm run build
       
-      - name: build images
-        run: docker build -t cae-frontend:1.0.0 .
+      # - name: build images
+      #   run: docker build -t cae-frontend:1.0.0 .
 
-      - name: Login to SWR
-        run: docker login -u me-east-1@EEWKRHXE5OFSDHGB6LNZ -p ${{ secrets.docker_secret }} swr.me-east-1.myhuaweicloud.com
+      # - name: Login to SWR
+      #   run: docker login -u me-east-1@EEWKRHXE5OFSDHGB6LNZ -p ${{ secrets.docker_secret }} swr.me-east-1.myhuaweicloud.com
 
-      - name: Push to SWR
-        run: |
-          docker tag cae-frontend:1.0.0 swr.me-east-1.myhuaweicloud.com/demo-cae/cae-frontend:1.0.0
-          docker push swr.me-east-1.myhuaweicloud.com/demo-cae/cae-frontend:1.0.0
+      # - name: Push to SWR
+      #   run: |
+      #     docker tag cae-frontend:1.0.0 swr.me-east-1.myhuaweicloud.com/demo-cae/cae-frontend:1.0.0
+      #     docker push swr.me-east-1.myhuaweicloud.com/demo-cae/cae-frontend:1.0.0
 
-      - uses: yuukky/cae-deploy@v1
+      - uses: yuukky/cae-deploy@main
         name: "Deploy to CAE"
         with:
           ak: ${{ secrets.HUAWEI_SECRET_ACCESS_KEY }}
