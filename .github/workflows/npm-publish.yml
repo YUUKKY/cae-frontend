@@ -47,9 +47,7 @@ jobs:
       # 下载并安装华为云 CLI
       - name: Install HuaweiCloud CLI
         run: |
-          curl -o huaweicloud-linux-amd64.tar.gz https://obs.dualstack.cn-north-4.myhuaweicloud.com/huaweicloud/cli/latest/huaweicloud-linux-amd64.tar.gz
-          tar xzf huaweicloud-linux-amd64.tar.gz
-          sudo mv huaweicloud /usr/local/bin/huaweicloud
+          curl -sSL https://cn-north-4-hdn-koocli.obs.cn-north-4.myhuaweicloud.com/cli/latest/hcloud_install.sh -o ./hcloud_install.sh && bash ./hcloud_install.sh
           hwcloud --version
 
       # 配置华为云 CLI
