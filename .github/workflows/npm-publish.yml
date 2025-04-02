@@ -48,12 +48,12 @@ jobs:
       - name: Install HuaweiCloud CLI
         run: |
           curl -sSL https://cn-north-4-hdn-koocli.obs.cn-north-4.myhuaweicloud.com/cli/latest/hcloud_install.sh -o ./hcloud_install.sh && sudo bash ./hcloud_install.sh -y
-          hwcloud --version
+          hcloud --version
 
       # 配置华为云 CLI
       - name: Configure HuaweiCloud CLI
         run: |
-          hwcloud configure --profile default --region <your_region> --ak ${{ secrets.HUAWEICLOUD_AK }} --sk ${{ secrets.HUAWEICLOUD_SK }}
+          hcloud configure --profile default --region <your_region> --ak ${{ secrets.HUAWEICLOUD_AK }} --sk ${{ secrets.HUAWEICLOUD_SK }}
         env:
           HUAWEICLOUD_AK: EEWKRHXE5OFSDHGB6LNZ
           HUAWEICLOUD_SK: ${{ secrets.docker_secret }}
