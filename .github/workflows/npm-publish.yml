@@ -59,8 +59,10 @@ jobs:
       - name: Deploy to CAE
         id: cli-command
         run: |
-          result=$(sudo hcloud CAE ExecuteAction --cli-region="me-east-1" --project_id="00248baf96984aecac0f8a976fa7ac00" --X-Enterprise-Project-ID="0" --X-Environment-ID="811db361-727e-4b57-b247-584433244394" --application_id="8f179f8e-f914-4ae2-bbe8-c629973c7f50" --component_id="ceec9e18-211e-428f-9d38-24899085462e" --api_version='v1' --kind='Action' --metadata.name="upgrade" --metadata.annotations.version="1.0.0" --spec.source.type="image" --spec.source.url="swr.me-east-1.myhuaweicloud.com/demo-cae/cae-frontend:1.0.0")
+          result=$(sudo hcloud CAE ExecuteAction --cli-region="me-east-1" --project_id="00248baf96984aecac0f8a976fa7ac00" --X-Enterprise-Project-ID="0" --X-Environment-ID="811db361-727e-4b57-b247-584433244394" --application_id="8f179f8e-f914-4ae2-bbe8-c629973c7f50" --component_id="ceec9e18-211e-428f-9d38-24899085462e" --api_version="v1" --kind="Action" --metadata.name="upgrade" --metadata.annotations.version="1.0.0" --spec.source.type="image" --spec.source.url="swr.me-east-1.myhuaweicloud.com/demo-cae/cae-frontend:1.0.0")
+          result1=$(sudo hcloud CAE ShowComponent --cli-region="me-east-1" --project_id="00248baf96984aecac0f8a976fa7ac00" --X-Enterprise-Project-ID="0" --X-Environment-ID="811db361-727e-4b57-b247-584433244394" --application_id="8f179f8e-f914-4ae2-bbe8-c629973c7f50" --component_id="ceec9e18-211e-428f-9d38-24899085462e")
 
       - name: Print CLI command result
         run: |
           echo "华为云 CLI 命令的返回结果: ${{ steps.cli-command.outputs.result }}"
+          echo "华为云 CLI 命令的返回结果: ${{ steps.cli-command.outputs.result1 }}"
