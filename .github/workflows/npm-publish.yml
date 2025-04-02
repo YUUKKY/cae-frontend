@@ -51,8 +51,8 @@ jobs:
           sk: ${{ secrets.SK }}
           project-id: 00248baf96984aecac0f8a976fa7ac00
           region-id: me-east-1
-          environment-id: c48fa293-d513-4567-974a-01ca0ed2335f
-          application-id: 5cc74cdb-e264-4a63-885d-541ca27fbf56
-          component-id: 3e0ea808-5d36-4ec9-8a8d-48fcbbcb029f
+          environment-id: 811db361-727e-4b57-b247-584433244394
+          application-id: 8f179f8e-f914-4ae2-bbe8-c629973c7f50
+          component-id: 0991b0b3-635a-4fb7-8ace-7f2a5277b47b
           image-address: swr.me-east-1.myhuaweicloud.com/demo-cae/cae-frontend:1.0.0
           component-version: 1.0.1
