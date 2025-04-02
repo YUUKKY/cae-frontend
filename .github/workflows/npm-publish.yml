@@ -6,7 +6,7 @@ name: Node.js Package
 on:
   push:
     branches:
-      - master
+      - cae-test
 
 jobs:
   build:
@@ -44,15 +44,22 @@ jobs:
           docker tag cae-frontend:1.0.0 swr.me-east-1.myhuaweicloud.com/demo-cae/cae-frontend:1.0.0
           docker push swr.me-east-1.myhuaweicloud.com/demo-cae/cae-frontend:1.0.0
 
-      - uses: yuukky/cae-deploy@main
-        name: "Deploy to CAE1"
-        with:
-          ak: ${{ secrets.HUAWEI_SECRET_ACCESS_KEY }}
-          sk: ${{ secrets.SK }}
-          project-id: 00248baf96984aecac0f8a976fa7ac00
-          region-id: me-east-1
-          environment-id: c48fa293-d513-4567-974a-01ca0ed2335f
-          application-id: 5cc74cdb-e264-4a63-885d-541ca27fbf56
-          component-id: 3e0ea808-5d36-4ec9-8a8d-48fcbbcb029f
-          image-address: swr.me-east-1.myhuaweicloud.com/demo-cae/cae-frontend:1.0.0
-          component-version: 1.0.1
+      # 下载并安装华为云 CLI
+      - name: Install HuaweiCloud CLI
+        run: |
+          curl https://obs.dualstack.cn-north-4.myhuaweicloud.com/huaweicloud/cli/latest/huaweicloud-linux-amd64.tar.gz | tar xz
+          sudo mv huaweicloud /usr/local/bin/huaweicloud
+          hwcloud --version
+
+      # 配置华为云 CLI
+      - name: Configure HuaweiCloud CLI
+        run: |
+          hwcloud configure --profile default --region <your_region> --ak ${{ secrets.HUAWEICLOUD_AK }} --sk ${{ secrets.HUAWEICLOUD_SK }}
+        env:
+          HUAWEICLOUD_AK: EEWKRHXE5OFSDHGB6LNZ
+          HUAWEICLOUD_SK: ${{ secrets.docker_secret }}
+
+      # 部署到华为云 CAE
+      - name: Deploy to CAE
+        run: |
+          hcloud CAE ExecuteAction --cli-region="me-east-1" --project_id="00248baf96984aecac0f8a976fa7ac00" --X-Enterprise-Project-ID="0" --X-Environment-ID="811db361-727e-4b57-b247-584433244394" --application_id="8f179f8e-f914-4ae2-bbe8-c629973c7f50" --component_id="ceec9e18-211e-428f-9d38-24899085462e" --api_version='v1' --kind='Action' --metadata.name='upgrade' --metadata.annotations.version="1.0.0" --spec.source.type='image' --spec.source.url="swr.me-east-1.myhuaweicloud.com/demo-cae/cae-frontend:1.0.0"
