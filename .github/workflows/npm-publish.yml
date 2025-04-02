@@ -59,7 +59,7 @@ jobs:
       - name: Deploy to CAE
         id: cli-command
         run: |
-          sudo hcloud CAE ExecuteAction --cli-region="me-east-1" --project_id="00248baf96984aecac0f8a976fa7ac00" --X-Enterprise-Project-ID="0" --X-Environment-ID="811db361-727e-4b57-b247-584433244394" --application_id="8f179f8e-f914-4ae2-bbe8-c629973c7f50" --component_id="4b3998c3-9771-4337-a653-d90132d2dd77" --api_version="v1" --kind="Action" --metadata.name="upgrade" --metadata.annotations.version="1.0.0" --spec.source.type="image" --spec.source.url="swr.me-east-1.myhuaweicloud.com/demo-cae/cae-frontend:1.0.0" -y
+          sudo hcloud CAE ExecuteAction --cli-region="me-east-1" --project_id="00248baf96984aecac0f8a976fa7ac00" --X-Enterprise-Project-ID="0" --X-Environment-ID="811db361-727e-4b57-b247-584433244394" --application_id="8f179f8e-f914-4ae2-bbe8-c629973c7f50" --component_id="4b3998c3-9771-4337-a653-d90132d2dd77" --api_version="v1" --kind="Action" --metadata.name="upgrade" --metadata.annotations.version="1.0.0" --spec.source.type="image" --spec.source.url="swr.me-east-1.myhuaweicloud.com/demo-cae/cae-frontend:1.0.0"
          
       - name: Print CLI command result
         run: |
