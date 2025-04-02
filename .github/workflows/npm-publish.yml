@@ -53,7 +53,7 @@ jobs:
       # 配置华为云 CLI
       - name: Configure HuaweiCloud CLI
         run: |
-          sudo hcloud configure set --cli-profile=testAKSK --cli-mode=AKSK --cli-region=cn-north-4 --cli-access-key=EEWKRHXE5OFSDHGB6LNZ --cli-secret-key=ovfuufEFiiaEXKRDJK0MEmjY39VWFFHHog4iBRVj --cli-project-id=00248baf96984aecac0f8a976fa7ac00 --cli-domain-id=5a9e34472c434dcabaf1d0c0d51e4efd --cli-read-timeout=10 --cli-connect-timeout=5
+          sudo hcloud configure set --cli-profile=testAKSK --cli-mode=AKSK --cli-region=cn-north-4 --cli-access-key=EEWKRHXE5OFSDHGB6LNZ --cli-secret-key=ovfuufEFiiaEXKRDJK0MEmjY39VWFFHHog4iBRVj --cli-project-id=00248baf96984aecac0f8a976fa7ac00 --cli-domain-id=5a9e34472c434dcabaf1d0c0d51e4efd --cli-read-timeout=20 --cli-connect-timeout=10
 
       # 部署到华为云 CAE
       - name: Deploy to CAE
