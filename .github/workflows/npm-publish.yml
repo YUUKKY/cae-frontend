@@ -19,6 +19,7 @@ jobs:
           node-version: 16
       
       - name: npm install and build
+        #执行执行某个shell命令或脚本
         run: |
           chmod 777 node_modules/.bin/vue-cli-service
           npm install
