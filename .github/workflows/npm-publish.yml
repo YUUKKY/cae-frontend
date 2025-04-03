@@ -1,19 +1,16 @@
-# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
-# For more information see: https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
-
 name: Node.js Package
 
 on:
   push:
     branches:
-      - master
+      - obs
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
+      
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -27,32 +24,8 @@ jobs:
           npm install
           npm run build
       
-      - name: npm install and build
-        run: |
-          chmod 777 node_modules/.bin/vue-cli-service
-          npm install
-          npm run build
-      
-      - name: build images
-        run: docker build -t cae-frontend:1.0.0 .
-
-      - name: Login to SWR
-        run: docker login -u me-east-1@EEWKRHXE5OFSDHGB6LNZ -p ${{ secrets.docker_secret }} swr.me-east-1.myhuaweicloud.com
-
-      - name: Push to SWR
-        run: |
-          docker tag cae-frontend:1.0.0 swr.me-east-1.myhuaweicloud.com/demo-cae/cae-frontend:1.0.0
-          docker push swr.me-east-1.myhuaweicloud.com/demo-cae/cae-frontend:1.0.0
-
-      - uses: yuukky/cae-deploy@main
-        name: "Deploy to CAE1"
+      - name: Upload artifact for deployment job
+        uses: actions/upload-artifact@v3
         with:
-          ak: ${{ secrets.HUAWEI_SECRET_ACCESS_KEY }}
-          sk: ${{ secrets.SK }}
-          project-id: 00248baf96984aecac0f8a976fa7ac00
-          region-id: me-east-1
-          environment-id: 811db361-727e-4b57-b247-584433244394
-          application-id: 8f179f8e-f914-4ae2-bbe8-c629973c7f50
-          component-id: 0991b0b3-635a-4fb7-8ace-7f2a5277b47b
-          image-address: swr.me-east-1.myhuaweicloud.com/demo-cae/cae-frontend:1.0.0
-          component-version: 1.0.1
+          name: node-app
+          path: .
