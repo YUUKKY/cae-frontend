@@ -26,6 +26,13 @@
   </div>
 </template>
 
+<script>
+import OrderQueue from './OrderQueue.vue'
+export default {
+  components: { OrderQueue }
+}
+</script>
+
 <style>
 .title {
   text-align: center;
