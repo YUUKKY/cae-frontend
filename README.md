@@ -1,24 +1,11 @@
-# cae-web
+# Vue 3 Trading System
 
-## Project setup
-```
+## 介绍
+
+本项目为一个基于 Vue 3 的交易系统前端，支持订单队列、服务健康检测、国际化、Mock数据等。
+
+## 启动
+
+```bash
 npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+npm run dev
