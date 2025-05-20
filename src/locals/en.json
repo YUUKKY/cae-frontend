@@ -1,0 +1,16 @@
+{
+  "orderId": "Order ID",
+  "time": "Time",
+  "amount": "Amount",
+  "price": "Price",
+  "status": "Status",
+  "type": "Type",
+  "buy": "Buy",
+  "sell": "Sell",
+  "completed": "Completed",
+  "pending": "Pending",
+  "refresh": "Refresh",
+  "orderQueue": "Order Queue",
+  "mockData": "Mock Data",
+  "cancelMock": "Cancel Mock"
+}

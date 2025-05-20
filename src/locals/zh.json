@@ -1,0 +1,16 @@
+{
+  "orderId": "订单号",
+  "time": "时间",
+  "amount": "数量",
+  "price": "价格",
+  "status": "状态",
+  "type": "类型",
+  "buy": "买单",
+  "sell": "卖单",
+  "completed": "已成交",
+  "pending": "待成交",
+  "refresh": "刷新",
+  "orderQueue": "订单队列",
+  "mockData": "Mock数据",
+  "cancelMock": "取消Mock"
+}
