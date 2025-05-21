@@ -1,0 +1,17 @@
+{
+  "ordersTab": "订单队列",
+  "healthTab": "服务健康",
+  "orderId": "订单号",
+  "time": "时间",
+  "quantity": "数量",
+  "price": "价格",
+  "status": "状态",
+  "mockData": "Mock数据",
+  "cancelMock": "取消Mock",
+  "provider": "服务提供方",
+  "consumer": "服务消费方",
+  "alive": "存活",
+  "warning": "警告",
+  "dead": "宕机",
+  "emptyText": "暂无订单"
+}

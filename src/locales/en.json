@@ -1,0 +1,17 @@
+{
+  "ordersTab": "Order Queue",
+  "healthTab": "Service Health",
+  "orderId": "Order ID",
+  "time": "Time",
+  "quantity": "Quantity",
+  "price": "Price",
+  "status": "Status",
+  "mockData": "Mock Data",
+  "cancelMock": "Cancel Mock",
+  "provider": "Provider",
+  "consumer": "Consumer",
+  "alive": "Alive",
+  "warning": "Warning",
+  "dead": "Dead",
+  "emptyText": "No Orders"
+}
