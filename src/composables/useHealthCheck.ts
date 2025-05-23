@@ -15,13 +15,13 @@ export function useHealthCheck() {
     let ok = false
     for (let i = 0; i < 3; i++) {
       try {
-        const res = await axios.get(`/v1/health/${service}`)
+        const res = await axios.get(`/v1/health/${service}`, { validateStatus: () => true })
         if (res.status === 200) {
           ok = true
           break
         }
       } catch {
-        // ignore
+        // 网络异常等，视为失败
       }
     }
     if (ok) {
