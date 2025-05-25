@@ -1,6 +1,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import axios from 'axios'
 
+const PROVIDER_BASE_URL = 'http://80.238.230.117:80'
 const mockData = [
   { id: '100001', time: '2025-05-20 17:00:00', quantity: 10, price: 100.5, status: 'NEW' },
   { id: '100002', time: '2025-05-20 17:00:01', quantity: 5, price: 101, status: 'FILLED' },
@@ -20,7 +21,7 @@ export function useOrders() {
       orders.value = [...mockData]
     } else {
       try {
-        const res = await axios.get('/v1/orders')
+        const res = await axios.get(`${PROVIDER_BASE_URL}/v1/orders`)
         orders.value = res.data
       } catch {
         orders.value = []

@@ -3,19 +3,27 @@ import axios from 'axios'
 
 type Status = 'green' | 'yellow' | 'red'
 
+const PROVIDER_BASE_URL = 'http://80.238.230.117:80'
+const CONSUMER_BASE_URL = 'http://80.238.230.117:81'
+
+const statusText = { green: 'alive', yellow: 'warning', red: 'dead' }
+
 export function useHealthCheck() {
   const status = reactive<{ provider: Status; consumer: Status }>({ provider: 'yellow', consumer: 'yellow' })
-  const statusText = { green: 'alive', yellow: 'warning', red: 'dead' }
   const errorCount = { provider: 0, consumer: 0 }
   let timer: any
 
   const getColor = (s: Status) => (s === 'green' ? 'green' : s === 'yellow' ? 'gold' : 'red')
 
+  const getBaseUrl = (service: 'provider' | 'consumer') =>
+      service === 'provider' ? PROVIDER_BASE_URL : CONSUMER_BASE_URL
+
   const check = async (service: 'provider' | 'consumer') => {
     let ok = false
+    const baseUrl = getBaseUrl(service)
     for (let i = 0; i < 3; i++) {
       try {
-        const res = await axios.get(`/v1/health/${service}`, { validateStatus: () => true })
+        const res = await axios.get(`${baseUrl}/v1/health`, { validateStatus: () => true })
         if (res.status === 200) {
           ok = true
           break
