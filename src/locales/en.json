@@ -6,6 +6,7 @@
   "quantity": "Quantity",
   "price": "Price",
   "status": "Status",
+  "type": "Type",
   "mockData": "Mock Data",
   "cancelMock": "Cancel Mock",
   "provider": "Provider",

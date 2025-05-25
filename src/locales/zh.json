@@ -6,6 +6,7 @@
   "quantity": "数量",
   "price": "价格",
   "status": "状态",
+  "type": "类型",
   "mockData": "Mock数据",
   "cancelMock": "取消Mock",
   "provider": "服务提供方",

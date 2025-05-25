@@ -3,10 +3,10 @@ import axios from 'axios'
 
 const PROVIDER_BASE_URL = 'http://80.238.230.117:80'
 const mockData = [
-  { id: '100001', time: '2025-05-20 17:00:00', quantity: 10, price: 100.5, status: 'NEW' },
-  { id: '100002', time: '2025-05-20 17:00:01', quantity: 5, price: 101, status: 'FILLED' },
-  { id: '100003', time: '2025-05-20 17:00:02', quantity: 7, price: 99.8, status: 'PARTIAL' },
-  { id: '100004', time: '2025-05-20 17:00:03', quantity: 12, price: 100.9, status: 'CANCELLED' }
+  { id: '100001', time: '2025-05-20 17:00:00', quantity: 10, price: 100.5, status: 'NEW', type: 'MOCK' },
+  { id: '100002', time: '2025-05-20 17:00:01', quantity: 5, price: 101, status: 'FILLED', type: 'MOCK'},
+  { id: '100003', time: '2025-05-20 17:00:02', quantity: 7, price: 99.8, status: 'PARTIAL', type: 'MOCK' },
+  { id: '100004', time: '2025-05-20 17:00:03', quantity: 12, price: 100.9, status: 'CANCELLED', type: 'MOCK' }
 ]
 
 export function useOrders() {
