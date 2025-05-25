@@ -12,7 +12,6 @@ RUN npm install
 # 复制所有文件到工作目录
 COPY . .
 
-# 构建应用
-RUN npm run dev
+EXPOSE 8080
 
 CMD ["bash", "run.sh"]
