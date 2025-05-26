@@ -90,16 +90,19 @@ const pagedOrders = computed(() => {
 })
 
 // 格式化时间戳为 YYYY-MM-DD HH:mm:ss
-const formatTime = (timestamp: number): string => {
-  if (!timestamp) return ''
-  const date = new Date(timestamp)
-  const padZero = (num: number): string => num.toString().padStart(2, '0')
-  const year = date.getFullYear()
-  const month = padZero(date.getMonth() + 1)
-  const day = padZero(date.getDate())
-  const hours = padZero(date.getHours())
-  const minutes = padZero(date.getMinutes())
-  const seconds = padZero(date.getSeconds())
-  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`
+const formatTime = (timestamp: number | string): string => {
+  if (!timestamp) return '';
+  const t = Number(timestamp);
+  if (!t || isNaN(t)) return '';
+  const date = new Date(t);
+  if (isNaN(date.getTime())) return '';
+  const padZero = (num: number): string => num.toString().padStart(2, '0');
+  const year = date.getFullYear();
+  const month = padZero(date.getMonth() + 1);
+  const day = padZero(date.getDate());
+  const hours = padZero(date.getHours());
+  const minutes = padZero(date.getMinutes());
+  const seconds = padZero(date.getSeconds());
+  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 }
 </script>
