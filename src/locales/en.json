@@ -9,7 +9,7 @@
   "type": "Type",
   "mockData": "Mock Data",
   "cancelMock": "Cancel Mock",
-  "provider": "Provider",
+  "provider": "Producer",
   "consumer": "Consumer",
   "alive": "Alive",
   "warning": "Warning",
