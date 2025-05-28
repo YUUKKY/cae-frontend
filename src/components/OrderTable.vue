@@ -20,11 +20,6 @@
       :empty-text="$t ? $t('emptyText') : '暂无数据'"
     >
       <el-table-column prop="id" :label="$t ? $t('orderId') : '订单号'" sortable="custom" />
-      <el-table-column :label="$t ? $t('time') : '时间'" sortable="custom">
-        <template #default="scope">
-          {{ formatTime(scope.row.time) }}
-        </template>
-      </el-table-column>
       <el-table-column prop="quantity" :label="$t ? $t('quantity') : '数量'" sortable="custom" />
       <el-table-column prop="price" :label="$t ? $t('price') : '价格'" sortable="custom" />
       <el-table-column prop="status" :label="$t ? $t('status') : '状态'" />
