@@ -24,6 +24,19 @@
       <el-table-column prop="price" :label="$t ? $t('price') : 'Price'" sortable="custom" />
       <el-table-column prop="status" :label="$t ? $t('status') : 'Status'" />
       <el-table-column prop="type" :label="$t ? $t('type') : 'Type'" />
+      <!-- 新增的原始时间戳列 -->
+      <el-table-column
+        prop="timestamp"
+        :label="$t ? $t('timestamp') : 'Timestamp'"
+      />
+      <!-- 新增的格式化时间列 -->
+      <el-table-column
+        :label="$t ? $t('formattedTime') : 'Time (Formatted)'"
+      >
+        <template #default="{ row }">
+          {{ formatTime(row.timestamp) }}
+        </template>
+      </el-table-column>
     </el-table>
     <div style="margin-top: 16px; text-align: right;">
       <el-pagination
@@ -84,11 +97,13 @@ const pagedOrders = computed(() => {
   return filteredOrders.value.slice(start, end)
 })
 
-// 格式化时间戳为 YYYY-MM-DD HH:mm:ss
+// 格式化时间戳为 YYYY-MM-DD HH:mm:ss，兼容10位秒和13位毫秒
 const formatTime = (timestamp: number | string): string => {
   if (!timestamp) return '';
-  const t = Number(timestamp);
+  let t = Number(timestamp);
   if (!t || isNaN(t)) return '';
+  // 若为10位，自动补足至毫秒
+  if (t < 1e12) t = t * 1000;
   const date = new Date(t);
   if (isNaN(date.getTime())) return '';
   const padZero = (num: number): string => num.toString().padStart(2, '0');
