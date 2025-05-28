@@ -4,10 +4,10 @@
       <MockSwitch :active="mockMode" @toggle="toggleMock" />
     </div>
     <div style="display: flex; gap: 12px; margin-bottom: 16px;">
-      <el-select v-model="typeFilter" placeholder="类型" style="width: 120px">
+      <el-select v-model="typeFilter" placeholder="Type" style="width: 120px">
         <el-option v-for="item in typeOptions" :key="item.value" :label="item.label" :value="item.value" />
       </el-select>
-      <el-select v-model="statusFilter" placeholder="状态" style="width: 120px">
+      <el-select v-model="statusFilter" placeholder="Status" style="width: 120px">
         <el-option v-for="item in statusOptions" :key="item.value" :label="item.label" :value="item.value" />
       </el-select>
     </div>
@@ -17,13 +17,13 @@
       @sort-change="onSortChange"
       :default-sort="{prop: sortProp, order: sortOrder}"
       height="420"
-      :empty-text="$t ? $t('emptyText') : '暂无数据'"
+      :empty-text="$t ? $t('emptyText') : 'No data available'"
     >
-      <el-table-column prop="id" :label="$t ? $t('orderId') : '订单号'" sortable="custom" />
-      <el-table-column prop="quantity" :label="$t ? $t('quantity') : '数量'" sortable="custom" />
-      <el-table-column prop="price" :label="$t ? $t('price') : '价格'" sortable="custom" />
-      <el-table-column prop="status" :label="$t ? $t('status') : '状态'" />
-      <el-table-column prop="type" :label="$t ? $t('type') : '类型'" />
+      <el-table-column prop="id" :label="$t ? $t('orderId') : 'Order ID'" sortable="custom" />
+      <el-table-column prop="quantity" :label="$t ? $t('quantity') : 'Quantity'" sortable="custom" />
+      <el-table-column prop="price" :label="$t ? $t('price') : 'Price'" sortable="custom" />
+      <el-table-column prop="status" :label="$t ? $t('status') : 'Status'" />
+      <el-table-column prop="type" :label="$t ? $t('type') : 'Type'" />
     </el-table>
     <div style="margin-top: 16px; text-align: right;">
       <el-pagination
