@@ -13,8 +13,6 @@ export function useOrders() {
   const orders = ref<any[]>([])
   const mockMode = ref(false)
   const interval = ref<any>(null)
-  const sortProp = ref('time')
-  const sortOrder = ref('descending')
 
   const fetchOrders = async () => {
     if (mockMode.value) {
@@ -27,21 +25,7 @@ export function useOrders() {
         orders.value = []
       }
     }
-    sortOrders()
-  }
-
-  const sortOrders = () => {
-    if (!sortProp.value) return
-    orders.value = [...orders.value].sort((a, b) => {
-      if (sortOrder.value === 'ascending') return a[sortProp.value] > b[sortProp.value] ? 1 : -1
-      else return a[sortProp.value] < b[sortProp.value] ? 1 : -1
-    })
-  }
-
-  const onSortChange = ({ prop, order }: { prop: string; order: string }) => {
-    sortProp.value = prop
-    sortOrder.value = order
-    sortOrders()
+    // 不再做排序，直接用接口返回顺序
   }
 
   const toggleMock = () => {
@@ -61,5 +45,5 @@ export function useOrders() {
   onMounted(startPolling)
   onUnmounted(stopPolling)
 
-  return { orders, mockMode, toggleMock, onSortChange, sortProp, sortOrder }
+  return { orders, mockMode, toggleMock }
 }
