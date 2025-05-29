@@ -24,14 +24,9 @@
       <el-table-column prop="price" :label="$t ? $t('price') : 'Price'" sortable="custom" />
       <el-table-column prop="status" :label="$t ? $t('status') : 'Status'" />
       <el-table-column prop="type" :label="$t ? $t('type') : 'Type'" />
-      <!-- 新增的原始时间戳列 -->
-      <el-table-column
-        prop="timestamp"
-        :label="$t ? $t('timestamp') : 'Timestamp'"
-      />
       <!-- 新增的格式化时间列 -->
       <el-table-column
-        :label="$t ? $t('formattedTime') : 'Time (Formatted)'"
+        :label="$t ? $t('formattedTime') : 'Timestamp'"
       >
         <template #default="{ row }">
           {{ formatTime(row.timestamp) }}
