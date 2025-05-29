@@ -3,8 +3,8 @@ import axios from 'axios'
 
 type Status = 'green' | 'yellow' | 'red'
 
-const PROVIDER_BASE_URL = 'http://80.238.230.117:80'
-const CONSUMER_BASE_URL = 'http://80.238.230.117:81'
+const PROVIDER_BASE_URL = 'http://cae.demo.huawei.com/v1/producer/health'
+const CONSUMER_BASE_URL = 'http://cae.demo.huawei.com/v1/consumer/health'
 
 const statusText = { green: 'alive', yellow: 'warning', red: 'dead' }
 
@@ -23,7 +23,7 @@ export function useHealthCheck() {
     const baseUrl = getBaseUrl(service)
     for (let i = 0; i < 3; i++) {
       try {
-        const res = await axios.get(`${baseUrl}/v1/health`, { validateStatus: () => true })
+        const res = await axios.get(`${baseUrl}`, { validateStatus: () => true })
         if (res.status === 200) {
           ok = true
           break
