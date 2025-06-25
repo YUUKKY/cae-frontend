@@ -3,8 +3,8 @@ import axios from 'axios'
 
 type Status = 'green' | 'yellow' | 'red'
 
-const PROVIDER_BASE_URL = 'http://cae.demo.huawei.com/v1/producer/health'
-const CONSUMER_BASE_URL = 'http://cae.demo.huawei.com/v1/consumer/health'
+const PROVIDER_BASE_URL = 'http://application-platform.org/v1/producer/health'
+const CONSUMER_BASE_URL = 'http://application-platform.org/v1/consumer/health'
 
 const statusText = { green: 'alive', yellow: 'warning', red: 'dead' }
 
