@@ -1,6 +1,9 @@
 FROM node:24-alpine
 WORKDIR /app
 
+RUN echo "nameserver 8.8.8.8" > /etc/resolv.conf && \
+    echo "nameserver 114.114.114.114" >> /etc/resolv.conf
+    
 RUN echo "=================="
 RUN ping -c 10 registry.npmjs.org
 RUN echo "=================="
