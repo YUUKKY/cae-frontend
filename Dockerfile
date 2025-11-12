@@ -1,4 +1,16 @@
-FROM swr.ap-southeast-3.myhuaweicloud.com/op_svc_cse/node-x86_64:8-int-1.0
-WORKDIR /var/cae-frontend
-COPY ./ /var/cae-frontend/
-CMD ["bash", "run.sh"]
+FROM node:24-alpine
+WORKDIR /app
+
+RUN echo "=================="
+RUN ping -c 10 registry.npmjs.org
+RUN echo "=================="
+
+COPY . .
+
+RUN npm install --loglevel silly --force
+
+RUN npm build
+
+EXPOSE 3000
+
+CMD ["node", "dist/index.js"]
